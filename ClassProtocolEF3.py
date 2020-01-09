@@ -6,8 +6,8 @@ import utils_functions as UtilsFunctions
 from ClassParticipiant import Participiant
 from ClassProtocol import Protocol
 from connect_to_db import connect_bd
-from var_execution import PREFIX, DB
 from utils_functions import logging_parser
+from var_execution import PREFIX, DB
 
 
 class ProtocolEF3(Protocol, Participiant):
@@ -66,6 +66,8 @@ def parserEF3(doc, path_xml, filexml, reg, type_f):
     print_form = p.get_print_form()
     protocol_date = p.get_protocol_date()
     abandoned_reason_name = p.get_abandoned_reason_name()
+    purchase_date = p.get_purchase_date()
+    purchase_name = p.get_purchase_name()
     lot_number = 1
     con = connect_bd(DB)
     cur = con.cursor()
@@ -100,9 +102,9 @@ def parserEF3(doc, path_xml, filexml, reg, type_f):
                 cancel_status = 1
     cur.execute(
             f"""INSERT INTO {PREFIX}auction_end_protocol SET id_protocol = %s, protocol_date =  %s, purchase_number = %s, 
-                    url = %s, print_form = %s, xml = %s, type_protocol = %s, cancel = %s, abandoned_reason_name = %s, lot_number = %s, refusal_fact = %s""",
+                    url = %s, print_form = %s, xml = %s, type_protocol = %s, cancel = %s, abandoned_reason_name = %s, lot_number = %s, refusal_fact = %s, purchase_date = %s, 	purchase_name = %s""",
             (id_protocol, protocol_date, purchase_number, url, print_form, xml, type_f, cancel_status,
-             abandoned_reason_name, lot_number, ref_fact))
+             abandoned_reason_name, lot_number, ref_fact, purchase_date, purchase_name))
     id_p = cur.lastrowid
     if not id_p:
         logging_parser('Empty id', xml)

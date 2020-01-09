@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Янв 09 2020 г., 14:11
+-- Время создания: Янв 09 2020 г., 14:33
 -- Версия сервера: 10.4.11-MariaDB-1:10.4.11+maria~eoan-log
 -- Версия PHP: 7.2.26-1+ubuntu19.10.1+deb.sury.org+1
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `tender`
+-- База данных: `tender2`
 --
 
 -- --------------------------------------------------------
@@ -69,7 +69,9 @@ CREATE TABLE `auction_end_protocol` (
   `cancel` tinyint(1) NOT NULL,
   `abandoned_reason_name` varchar(2000) NOT NULL,
   `lot_number` int(11) NOT NULL,
-  `refusal_fact` varchar(4000) NOT NULL
+  `refusal_fact` varchar(4000) NOT NULL,
+  `purchase_date` datetime NOT NULL,
+  `purchase_name` varchar(2000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

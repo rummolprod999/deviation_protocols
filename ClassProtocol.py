@@ -46,6 +46,22 @@ class Protocol:
             d = ''
         return str(d)
 
+    def get_purchase_date(self):
+        d = UtilsFunctions.get_el(self.protocol, 'purchaseInfo', 'publishDate') or UtilsFunctions.get_el(self.protocol, 'publishDate')
+        if d:
+            try:
+                dt = dateutil.parser.parse(d)
+                d = dt.astimezone(pytz.timezone("Europe/Moscow"))
+            except Exception:
+                d = ''
+        else:
+            d = ''
+        return str(d)
+
+    def get_purchase_name(self):
+        d = UtilsFunctions.get_el(self.protocol, 'purchaseInfo', 'purchaseObjectInfo') or UtilsFunctions.get_el(self.protocol, 'foundationProtocolName')
+        return d
+
     def get_url(self):
         d = UtilsFunctions.get_el(self.protocol, 'href')
         return d
