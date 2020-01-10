@@ -298,6 +298,8 @@ def main():
 if __name__ == "__main__":
     logging_parser("Start parsing")
     main()
+    logging_parser('Added ProtocolDeviation',
+                   ClassProtocolEF3.ProtocolEF3.add_protocolEF3)
     logging_parser('Updated ProtocolDeviation',
                    ClassProtocolEF3.ProtocolEF3.update_protocolEF3)
     logging_parser("End parsing")
