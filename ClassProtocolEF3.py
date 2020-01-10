@@ -134,7 +134,8 @@ def parserEF3(doc, path_xml, filexml, reg, type_f):
                             (inn, kpp, organization_name, participant_type, country_full_name, post_address))
                 id_participiant = cur.lastrowid
         if id_participiant == 0:
-            logging_parser('Empty inn', xml, type_f)
+            # logging_parser('Empty inn', xml, type_f)
+            pass
         app_rating = p.get_app_rating(app)
         admission = p.get_admission(app)
         cur.execute(f"""INSERT INTO {PREFIX}auction_end_applications SET id_auction_end_protocol = %s, 
